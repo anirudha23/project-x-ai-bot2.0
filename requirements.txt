@@ -1,0 +1,8 @@
+discord.py
+requests
+python-dotenv
+flask
+requests
+selenium
+webdriver-manager
+openai
