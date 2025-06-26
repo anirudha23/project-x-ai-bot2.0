@@ -1,9 +1,9 @@
 import requests
 import json
 import os
+import time  # ✅ Add this
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
-
 
 def send_signal_to_discord():
     with open("last_signal.json", "r") as f:
@@ -25,8 +25,9 @@ def send_signal_to_discord():
 """
 
     payload = {"content": message}
-
     headers = {"Content-Type": "application/json"}
+
+    time.sleep(10)  # ✅ Delay to avoid rate limit
 
     response = requests.post(WEBHOOK_URL,
                              data=json.dumps(payload),
@@ -36,7 +37,3 @@ def send_signal_to_discord():
         print("✅ Signal sent successfully!")
     else:
         print(f"❌ Failed: {response.status_code} - {response.text}")
-
-
-# Run immediately
-send_signal_to_discord() 
