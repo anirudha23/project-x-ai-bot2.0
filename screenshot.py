@@ -6,14 +6,15 @@ import shutil
 import sys
 
 def capture_chart_screenshot():
-    # Check for available chromium binary
+    chart_url = "https://in.tradingview.com/chart/vS5KLHQC/?symbol=BITSTAMP:BTCUSD"  # your actual chart
+
     chrome_path = shutil.which("chromium-browser") or shutil.which("chromium")
     if chrome_path is None:
         print("❌ Chromium not found on system.")
         sys.exit(1)
 
     options = Options()
-    options.binary_location = chrome_path  # Now guaranteed to be valid
+    options.binary_location = chrome_path
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -22,7 +23,9 @@ def capture_chart_screenshot():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
-    driver.get("https://www.tradingview.com/chart/")
+    print("🌐 Loading TradingView chart...")
+    driver.get(chart_url)
+    driver.implicitly_wait(10)  # Wait to ensure chart loads
     driver.save_screenshot("screenshot.png")
     driver.quit()
 
