@@ -19,7 +19,7 @@ co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
 # === AI Models ===
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base", use_fast=False)
 blip_model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base").to(device)
 
 # === Captioning ===
