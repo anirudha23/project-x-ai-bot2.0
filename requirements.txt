@@ -1,8 +1,0 @@
-discord.py
-python-dotenv
-flask
-requests
-selenium
-twelvedata
-openai>=1.0.0
-webdriver-manager
