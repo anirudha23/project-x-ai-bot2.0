@@ -1,0 +1,13 @@
+flask
+requests
+selenium
+twelvedata
+openai>=1.0.0
+discord.py
+python-dotenv
+webdriver-manager
+undetected-chromedriver
+torch
+transformers
+pillow
+cohere
